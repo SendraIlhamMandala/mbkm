@@ -1,13 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Form Pendaftaran Pertukaran Mahasiswa Merdeka FISIP UNIGA') }}
+            Form Pendaftaran {{$program}} Mahasiswa Merdeka FISIP UNIGA
         </h2>
     </x-slot>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
+    
     <form id="myForm" action="/testpost" method="post" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" id="program" name="program" value="{{ $program }}">
         <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -401,7 +404,7 @@
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="surat_keterangan_sehat"
-                            name="data_kesehatan[surat_keterangan_sehat_upload]" id="surat_keterangan_sehat"
+                            name="data_kesehatan[surat_keterangan_sehat]" id="surat_keterangan_sehat"
                             type="file" accept="image/jpeg,image/png,application/pdf" >
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="surat_keterangan_sehat">
                             surat_keterangan_sehat</div>
@@ -410,7 +413,7 @@
                             for="transkrip_nilai">Sertifikat vaksin </label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="sertifikat_vaksin" name="data_kesehatan[sertifikat_vaksin_upload]"
+                            aria-describedby="sertifikat_vaksin" name="data_kesehatan[sertifikat_vaksin]"
                             id="sertifikat_vaksin" type="file" accept="image/jpeg,image/png,application/pdf"
                             >
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_vaksin">
@@ -460,7 +463,7 @@
                             id="ktp" type="file" accept="image/jpeg,image/png,application/pdf"
                             >
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="ktp">
-                            ktp</div>
+                            Kartu Tanda Penduduk</div>
 
                             <label class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
                             for="transkrip_nilai">cv </label>
@@ -470,7 +473,7 @@
                             id="cv" type="file" accept="image/jpeg,image/png,application/pdf"
                             >
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="cv">
-                            cv</div>
+                            Curiculum Vitae</div>
 
                     </div>
                 </div>

@@ -84,6 +84,13 @@ class User extends Authenticatable
         return $this->hasOne(Tambahan::class);
     }
 
+    public function datapendukung(){
+        return $this->hasOne(Datapendukung::class);
+    }
+    public function kontakdarurat(){
+        return $this->hasOne(Kontakdarurat::class);
+    }
+
  
 
 }
