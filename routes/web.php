@@ -11,6 +11,7 @@ use App\Models\Kontak;
 use App\Models\Kontakdarurat;
 use App\Models\Orangtua;
 use App\Models\Sekolah;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -33,10 +34,22 @@ use function PHPUnit\Framework\isNull;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+  
+  if (Setting::first()->status=='open') {
+    # code...
+    return view('halamanawal');
+  }else{
+    return redirect('/tutup');
+  }
+});
+
+Route::get('/tutup', function () {
+    return view('tutup');
+  
 });
 
 Route::get('/dashboard', function () {
+  return redirect('/');
   return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -155,13 +168,14 @@ Route::post('testpost', function (Request $request) {
   }
 
   $program = new Datadaftar(['program' => $request->program]);  
-  $user->datadaftar()->save($program);
+  $program->user()->associate($user);
+  $program->save();
 
   //return success json 
   return json_encode([
     'success' => true
   ]);
-})->name('testpost');
+})->middleware(['auth'])->name('testpost');
 
 
 Route::get('checkmhs/{id}', function (User $id) {
@@ -188,18 +202,62 @@ Route::get('halamanawal', function () {
 );
 
 Route::get('daftar/{program}', function ($program) {
+  // dd(Auth()->user()->datadaftar->all()->pluck('program'));
   
-  if (Auth()->user()->datadaftar?->program==null||Auth()->user()->datadaftar?->program!=$program){ 
-    # code...
+
+  // if (Auth()->user()->datadaftars?->program==null) {
+  //   # code...
+  //   return view('daftarprogram', compact('program'));
+
+  // }
+
+  $user = Auth()->user();
+  $akademik = $user->akademik;
+  $datadaftar = $user->datadaftar;
+  $datapendukung = $user->datapendukung;
+  $datapribadi = $user->datapribadi;
+  $kesehatan = $user->kesehatan;
+  $kontak = $user->kontak;
+  $kontakdarurat = $user->kontakdarurat;
+  $orangtua = $user->orangtua;
+  $sekolah = $user->sekolah;
+
+  
+    foreach (Auth()->user()->datadaftars->pluck('program') as $element) {
+        if ($element != $program) {
+          return redirect('/data-profil');
+
+          return view('daftarprogram_after',compact('program', 'akademik', 'datadaftar', 'datapendukung', 'datapribadi', 'kesehatan', 'kontak', 'kontakdarurat', 'orangtua', 'sekolah'));
+        }elseif($element == $program){
+          return redirect('/data-profil');
+          
+          return redirect()->back();
+        }
+    }
+
+
+  
+ 
     return view('daftarprogram', compact('program'));
-  }
-  else{
-    return redirect('/halamanawal');
-  }
+  
 }
-);
+)->middleware(['auth']);
 
+Route::get('data-profil', function () {
 
+  $user = Auth()->user();
+  $akademik = $user->akademik;
+  $datadaftar = $user->datadaftar;
+  $datapendukung = $user->datapendukung;
+  $datapribadi = $user->datapribadi;
+  $kesehatan = $user->kesehatan;
+  $kontak = $user->kontak;
+  $kontakdarurat = $user->kontakdarurat;
+  $orangtua = $user->orangtua;
+  $sekolah = $user->sekolah;    
+  
+  return view('dataprofil',compact('user', 'akademik', 'datadaftar', 'datapendukung', 'datapribadi', 'kesehatan', 'kontak', 'kontakdarurat', 'orangtua', 'sekolah'));
+})->middleware('auth')->name('dataprofil');
 
 
 

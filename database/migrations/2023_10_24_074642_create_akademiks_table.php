@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('semester');
             $table->string('ipk')->nullable();
             $table->text('ipk_upload')->nullable();
-            $table->string('transkrip_nilai');
+            $table->string('transkrip_nilai')->nullable();
             $table->text('transkrip_nilai_upload');
             $table->foreignIdFor(User::class);
 

@@ -49,8 +49,8 @@ class User extends Authenticatable
         return $this->hasOne(Akademik::class);
     }
 
-    public function datadaftar(){
-        return $this->hasOne(Datadaftar::class);
+    public function datadaftars(){
+        return $this->hasMany(Datadaftar::class);
     }
     
     public function dataidentity(){
