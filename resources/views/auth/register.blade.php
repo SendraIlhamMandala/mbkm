@@ -4,16 +4,28 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nama Lengkap')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+        
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        
+        <!-- Email Address -->
+        <div class="mt-4">
+            <x-input-label for="nim" :value="__('nim')" />
+            <x-text-input id="nim" class="block mt-1 w-full" type="text" name="nimhs" :value="old('nimhs')" required autocomplete="nim" />
+            <x-input-error :messages="$errors->get('nim')" class="mt-2" />
+                <div>
+                    {{session('error')}}
+                </div>
         </div>
 
         <!-- Password -->
@@ -41,7 +53,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Login') }}
             </a>
 
             <x-primary-button class="ml-4">

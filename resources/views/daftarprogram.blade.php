@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Form Pendaftaran {{$program}} Mahasiswa Merdeka FISIP UNIGA
+            Form Pendaftaran {{ $program }} Mahasiswa Merdeka FISIP UNIGA
         </h2>
     </x-slot>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-    
+
     <form id="myForm" action="/testpost" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" id="program" name="program" value="{{ $program }}">
@@ -20,7 +20,7 @@
                         <div class="relative z-0 w-full mb-6 group">
                             <input type="text" name="data_pribadi[nama_lengkap]" id="nama_lengkap"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
+                                placeholder=" " value="{{ Auth()->user()->name }}" required />
                             <label for="nama_lengkap"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama
                                 Lengkap</label>
@@ -45,9 +45,9 @@
 
                         <label for="jenis_kelamin" class="block text-sm font-medium text-gray-900 dark:text-white">Jenis
                             kelamin</label>
-                        <select id="jenis_kelamin" name ="data_pribadi[jenis_kelamin]"
+                        <select id="jenis_kelamin" name ="data_pribadi[jenis_kelamin]" required
                             class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option>Laki - laki </option>
+                            <option selected>Laki - laki </option>
                             <option>Perempuan</option>
                         </select>
                         <div class="grid md:grid-cols-2 md:gap-6">
@@ -111,6 +111,32 @@
                         </div>
 
                         <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="data_pribadi[golongan_darah]" id="golongan_darah"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required />
+                            <label for="golongan_darah"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">golongan_darah</label>
+                        </div>
+
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="data_pribadi[pekerjaan]" id="pekerjaan"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required />
+                            <label for="pekerjaan"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">pekerjaan</label>
+                        </div>
+
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="data_pribadi[kewarganegaraan]" id="kewarganegaraan"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required />
+                            <label for="kewarganegaraan"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">kewarganegaraan</label>
+                        </div>
+
+
+
+                        <div class="relative z-0 w-full mb-6 group">
                             <input type="number" name="data_pribadi[nik]" id="nik"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" " required />
@@ -135,7 +161,7 @@
                         <div class="relative z-0 w-full mb-6 group">
                             <input type="number" name="data_akademik[nim]" id="nim"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
+                                placeholder=" " value="{{ Auth()->user()->nimhs }}" required />
                             <label for="nim"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">NIM
                                 (Nomor Induk Mahasiswa)</label>
@@ -174,6 +200,17 @@
 
 
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            for="ipk_upload">Scan IPK </label>
+                        <input
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            aria-describedby="ipk_upload" name="data_akademik[ipk_upload_upload]" id="ipk_upload"
+                            type="file" accept="image/jpeg,image/png,application/pdf">
+                        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="ipk_upload">
+                            Scan IPK </div>
+
+
+
+                        <label class="block mb-2 mt-6 text-sm font-medium text-gray-900 dark:text-white"
                             for="transkrip_nilai">Transkrip nilai (wajib)</label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -211,9 +248,17 @@
                         <div class="relative z-0 w-full mb-6 group">
                             <input type="email" name="data_kontak[email]" id="email"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
+                                placeholder=" " value="{{ Auth()->user()->email }}" required />
                             <label for="email"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">email</label>
+                        </div>
+
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="data_kontak[email_cadangan]" id="email_cadangan"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required />
+                            <label for="email_cadangan"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">email_cadangan</label>
                         </div>
 
                         <div class="grid md:grid-cols-2 md:gap-6">
@@ -230,7 +275,7 @@
                             <div class="relative z-0 w-full mb-6 group">
                                 <input type="text" name="data_kontak[instagram]" id="instagram"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " required />
+                                    placeholder=" " />
                                 <label for="instagram"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">instagram</label>
                             </div>
@@ -240,7 +285,7 @@
                             <div class="relative z-0 w-full mb-6 group">
                                 <input type="text" name="data_kontak[facebook]" id="facebook"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " required />
+                                    placeholder=" " />
                                 <label for="facebook"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">facebook</label>
                             </div>
@@ -249,7 +294,7 @@
                             <div class="relative z-0 w-full mb-6 group">
                                 <input type="text" name="data_kontak[telegram]" id="telegram"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                    placeholder=" " required />
+                                    placeholder=" " />
                                 <label for="telegram"
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">telegram</label>
                             </div>
@@ -263,12 +308,128 @@
             </div>
         </div>
 
-        
         <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <h5 class="text-xl font-medium flex justify-center text-gray-900 dark:text-white">Data kontak darurat
+                        <h5 class="text-xl font-medium flex justify-center text-gray-900 dark:text-white">Preferensi
+                            tempat pilihan selain provinsi domisili
+                        </h5>
+
+
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="data_preferensi[provinsi] " id="provinsi"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required />
+                            <label for="provinsi"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Provinsi
+                            </label>
+                        </div>
+
+
+                        <label for="bersedia" class="block text-sm font-medium text-gray-900 dark:text-white">apakah
+                            anda bersedia ditempatkan di luar provinsi tersebut ?</label>
+                        <select id="bersedia" name ="data_preferensi[bersedia]" required
+                            class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled>pilih</option>
+                            <option>Ya</option>
+                            <option>Tidak</option>
+                        </select>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="py-4">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <h5 class="text-xl font-medium flex justify-center text-gray-900 dark:text-white">Data Asuransi
+                            kesehatan
+                        </h5>
+
+
+                        <label for="asuransi" class="block text-sm font-medium text-gray-900 dark:text-white">Memiliki
+                            asuransi kesehatan ?</label>
+                        <select id="asuransi" name ="data_asuransi[punya_asuransi]" required
+                            class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled>pilih</option>
+                            <option>Ya</option>
+                            <option>Tidak</option>
+
+                        </select>
+                        <div id="asuransi-input" style="display: none;">
+
+                            <div class="relative z-0 w-full mb-6 group">
+                                <input type="text" name="data_asuransi[jenis]" id="asuransi_input_input"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" "  />
+                                <label for="asuransi_input_input"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                    jenis asuransi
+                                </label>
+                            </div>
+
+                            <div class="relative z-0 w-full mb-6 group">
+                                <input type="text" name="data_asuransi[nama]" id="asuransi_input_input2"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" "  />
+                                <label for="asuransi_input_input2"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                    nama asuransi
+                                </label>
+                            </div>
+
+                            <div class="relative z-0 w-full mb-6 group">
+                                <input type="text" name="data_asuransi[pembayaran]" id="asuransi_input_input3"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" "  />
+                                <label for="asuransi_input_input3"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                    jenis pembayaran asuransi
+                                </label>
+                            </div>
+
+                            <div class="relative z-0 w-full mb-6 group">
+                                <input type="text" name="data_asuransi[asuransi_upload]"
+                                    id="asuransi_input_input4"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" "  />
+                                <label for="asuransi_input_input4"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                    upload scan kartu kepemilikan asuransi
+                                </label>
+                            </div>
+
+                            <label class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                                for="sertifikat_vaksin">upload scan kartu kepemilikan asuransi</label>
+                            <input
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                aria-describedby="sertifikat_vaksin" name="data_asuransi[asuransi_upload]"
+                                id="asuransi_input_input4" type="file"
+                                accept="image/jpeg,image/png,application/pdf">
+                            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_vaksin">
+                                upload scan kartu kepemilikan asuransi</div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="py-4">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <h5 class="text-xl font-medium flex justify-center text-gray-900 dark:text-white">Data kontak
+                            darurat
                         </h5>
 
 
@@ -282,9 +443,11 @@
                         </div>
 
 
-                        <label for="hubungan" class="block text-sm font-medium text-gray-900 dark:text-white">Hubungan</label>
-                        <select id="hubungan" name ="data_kontak_darurat[hubungan]"
+                        <label for="hubungan"
+                            class="block text-sm font-medium text-gray-900 dark:text-white">Hubungan</label>
+                        <select id="hubungan" name ="data_kontak_darurat[hubungan]" required
                             class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled>pilih</option>
                             <option>Ayah</option>
                             <option>Ibu</option>
                             <option>Kakak</option>
@@ -296,10 +459,12 @@
                             <option>Lainnya</option>
                         </select>
                         <div id="lainnya-input" style="display: none;">
-                            <input id="lainnya_input_input" type="text" value="" name="data_kontak_darurat[hubungan]" placeholder="masukkan hubungan" class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                          </div>
-                          
-                        
+                            <input id="lainnya_input_input" type="text" name="data_kontak_darurat[hubungan]"
+                                placeholder="masukkan hubungan"
+                                class="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+
+
                         <div class="relative z-0 w-full mb-6 group">
                             <input type="number" name="data_kontak_darurat[telepon] " id="telepon"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -400,12 +565,11 @@
 
 
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="surat_keterangan_sehat">Surat Keterangan sehat </label>
-                        <input
+                            for="surat_keterangan_sehat">Surat Keterangan sehat (wajib)</label>
+                        <input required
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="surat_keterangan_sehat"
-                            name="data_kesehatan[surat_keterangan_sehat]" id="surat_keterangan_sehat"
-                            type="file" accept="image/jpeg,image/png,application/pdf" >
+                            aria-describedby="surat_keterangan_sehat" name="data_kesehatan[surat_keterangan_sehat]"
+                            id="surat_keterangan_sehat" type="file" accept="image/jpeg,image/png,application/pdf">
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="surat_keterangan_sehat">
                             surat keterangan sehat dari puskesman atau dokter </div>
 
@@ -414,8 +578,7 @@
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="sertifikat_vaksin" name="data_kesehatan[sertifikat_vaksin]"
-                            id="sertifikat_vaksin" type="file" accept="image/jpeg,image/png,application/pdf"
-                            >
+                            id="sertifikat_vaksin" type="file" accept="image/jpeg,image/png,application/pdf">
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_vaksin">
                             sertifikat_vaksin</div>
 
@@ -425,7 +588,7 @@
         </div>
 
 
-        
+
         <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -439,9 +602,8 @@
                             for="pengalaman_organisasi">bukti pengalaman berorganisasi (opsional) </label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="pengalaman_organisasi"
-                            name="data_pendukung[pengalaman_organisasi]" id="pengalaman_organisasi"
-                            type="file" accept="image/jpeg,image/png,application/pdf" >
+                            aria-describedby="pengalaman_organisasi" name="data_pendukung[pengalaman_organisasi]"
+                            id="pengalaman_organisasi" type="file" accept="image/jpeg,image/png,application/pdf">
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="pengalaman_organisasi">
                             pengalaman_organisasi</div>
 
@@ -450,28 +612,25 @@
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="sertifikat_prestasi" name="data_pendukung[sertifikat_prestasi]"
-                            id="sertifikat_prestasi" type="file" accept="image/jpeg,image/png,application/pdf"
-                            >
+                            id="sertifikat_prestasi" type="file" accept="image/jpeg,image/png,application/pdf">
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_prestasi">
                             sertifikat_prestasi </div>
 
-                            <label class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                        <label class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
                             for="ktp">ktp </label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="ktp" name="data_pendukung[ktp]"
-                            id="ktp" type="file" accept="image/jpeg,image/png,application/pdf"
-                            >
+                            aria-describedby="ktp" name="data_pendukung[ktp]" id="ktp" type="file"
+                            accept="image/jpeg,image/png,application/pdf" required>
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="ktp">
                             Kartu Tanda Penduduk</div>
 
-                            <label class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                        <label class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
                             for="cv">cv (opsional) </label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="cv" name="data_pendukung[cv]"
-                            id="cv" type="file" accept="image/jpeg,image/png,application/pdf"
-                            >
+                            aria-describedby="cv" name="data_pendukung[cv]" id="cv" type="file"
+                            accept="image/jpeg,image/png,application/pdf">
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="cv">
                             Curiculum Vitae</div>
 
@@ -503,125 +662,152 @@
         </div>
     </div>
 
-
+{{-- 
     <script>
         $(document).ready(function() {
             $('#myForm').on('submit', function(e) {
                 e.preventDefault();
                 if (confirm("Data tidak bisa di ubah setelah ini , lanjutkan ? ")) {
-                $.ajax({
-                    xhr: function() {
-                        var xhr = new window.XMLHttpRequest();
-                        xhr.upload.addEventListener("progress", function(evt) {
-                            if (evt.lengthComputable) {
-                                var percentComplete = ((evt.loaded / evt.total) * 100);
-                                $('#progress').width(percentComplete + '%');
-                                $('#percentage').text(Math.round(percentComplete) +
-                                    '%');
-                            }
-                        }, false);
-                        return xhr;
-                    },
-                    type: 'POST',
-                    url: '/testpost',
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(data) {
-                        console.log(data);
-                        window.location.href = '/data-profil';
-                    },
-                    error: function(data) {
-                        window.alert("error");
-                        console.log("error");
-                        console.log(data);
-                    }
-                });
+                    $.ajax({
+                        xhr: function() {
+                            var xhr = new window.XMLHttpRequest();
+                            xhr.upload.addEventListener("progress", function(evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = ((evt.loaded / evt.total) *
+                                        100);
+                                    $('#progress').width(percentComplete + '%');
+                                    $('#percentage').text(Math.round(percentComplete) +
+                                        '%');
+                                }
+                            }, false);
+                            return xhr;
+                        },
+                        type: 'POST',
+                        url: '/testpost',
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(data) {
+                            console.log(data);
+                            window.location.href = '/data-profil';
+                        },
+                        error: function(data) {
+                            window.alert("error");
+                            console.log("error");
+                            console.log(data);
+                        }
+                    });
+                }
+            });
+        });
+    </script> --}}
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var selectElement = document.getElementById('asuransi');
+            var asuransiInput = document.getElementById('asuransi-input');
+            var asuransiInputInput1 = document.getElementById('asuransi_input_input');
+            var asuransiInputInput2 = document.getElementById('asuransi_input_input2');
+            var asuransiInputInput3 = document.getElementById('asuransi_input_input3');
+            var asuransiInputInput4 = document.getElementById('asuransi_input_input4');
+
+            function updateInputs(value, display) {
+                asuransiInputInput1.value = value;
+                asuransiInputInput2.value = value;
+                asuransiInputInput3.value = value;
+                asuransiInputInput4.value = value;
+                asuransiInput.style.display = display;
+            }
+
+            selectElement.addEventListener('change', function() {
+                if (selectElement.value === 'Ya') {
+                    updateInputs('', 'block');
+                } else {
+                    var selectedText = '';
+                    updateInputs(selectedText, 'none');
                 }
             });
         });
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var selectElement = document.getElementById('hubungan');
-    var lainnyaInput = document.getElementById('lainnya-input');
-    var lainnyaInputInput = document.getElementById('lainnya_input_input');
+        document.addEventListener('DOMContentLoaded', function() {
+            var selectElement = document.getElementById('hubungan');
+            var lainnyaInput = document.getElementById('lainnya-input');
+            var lainnyaInputInput = document.getElementById('lainnya_input_input');
 
-    selectElement.addEventListener('change', function() {
-        if (selectElement.value === 'Lainnya') {
-            lainnyaInputInput.value = '';
-            lainnyaInput.style.display = 'block';
+            selectElement.addEventListener('change', function() {
+                if (selectElement.value === 'Lainnya') {
+                    lainnyaInputInput.value = '';
+                    lainnyaInput.style.display = 'block';
 
-        } else {
-            lainnyaInputInput.value = selectElement.options[selectElement.selectedIndex].text;
-;
-            lainnyaInput.style.display = 'none';
-        }
-    });
-});
+                } else {
+                    lainnyaInputInput.value = selectElement.options[selectElement.selectedIndex].text;
+                    lainnyaInput.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
-      </script>
+    <script>
+        document.getElementById('transkrip_nilai').addEventListener('change', function(e) {
+            var maxSize = 2 * 1024 * 1024; // 2MB
+            if (this.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar! Maximum size 2MB.');
+                this.value = '';
+            }
+        });
 
-<script>
-    document.getElementById('transkrip_nilai').addEventListener('change', function (e) {
-        var maxSize = 2 * 1024 * 1024; // 2MB
-        if (this.files[0].size > maxSize) {
-            alert('Ukuran file terlalu besar! Maximum size 2MB.');
-            this.value = '';
-        }
-    });
+        document.getElementById('surat_keterangan_sehat').addEventListener('change', function(e) {
+            var maxSize = 2 * 1024 * 1024; // 2MB
+            if (this.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar! Maximum size 2MB.');
+                this.value = '';
+            }
+        });
 
-    document.getElementById('surat_keterangan_sehat').addEventListener('change', function (e) {
-        var maxSize = 2 * 1024 * 1024; // 2MB
-        if (this.files[0].size > maxSize) {
-            alert('Ukuran file terlalu besar! Maximum size 2MB.');
-            this.value = '';
-        }
-    });
 
-    
-    document.getElementById('sertifikat_vaksin').addEventListener('change', function (e) {
-        var maxSize = 2 * 1024 * 1024; // 2MB
-        if (this.files[0].size > maxSize) {
-            alert('Ukuran file terlalu besar! Maximum size 2MB.');
-            this.value = '';
-        }
-    });
+        document.getElementById('sertifikat_vaksin').addEventListener('change', function(e) {
+            var maxSize = 2 * 1024 * 1024; // 2MB
+            if (this.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar! Maximum size 2MB.');
+                this.value = '';
+            }
+        });
 
-    document.getElementById('pengalaman_organisasi').addEventListener('change', function (e) {
-        var maxSize = 2 * 1024 * 1024; // 2MB
-        if (this.files[0].size > maxSize) {
-            alert('Ukuran file terlalu besar! Maximum size 2MB.');
-            this.value = '';
-        }
-    });
+        document.getElementById('pengalaman_organisasi').addEventListener('change', function(e) {
+            var maxSize = 2 * 1024 * 1024; // 2MB
+            if (this.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar! Maximum size 2MB.');
+                this.value = '';
+            }
+        });
 
-    document.getElementById('sertifikat_prestasi').addEventListener('change', function (e) {
-        var maxSize = 2 * 1024 * 1024; // 2MB
-        if (this.files[0].size > maxSize) {
-            alert('Ukuran file terlalu besar! Maximum size 2MB.');
-            this.value = '';
-        }
-    });
+        document.getElementById('sertifikat_prestasi').addEventListener('change', function(e) {
+            var maxSize = 2 * 1024 * 1024; // 2MB
+            if (this.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar! Maximum size 2MB.');
+                this.value = '';
+            }
+        });
 
-    document.getElementById('ktp').addEventListener('change', function (e) {
-        var maxSize = 2 * 1024 * 1024; // 2MB
-        if (this.files[0].size > maxSize) {
-            alert('Ukuran file terlalu besar! Maximum size 2MB.');
-            this.value = '';
-        }
-    });
+        document.getElementById('ktp').addEventListener('change', function(e) {
+            var maxSize = 2 * 1024 * 1024; // 2MB
+            if (this.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar! Maximum size 2MB.');
+                this.value = '';
+            }
+        });
 
-    document.getElementById('cv').addEventListener('change', function (e) {
-        var maxSize = 2 * 1024 * 1024; // 2MB
-        if (this.files[0].size > maxSize) {
-            alert('Ukuran file terlalu besar! Maximum size 2MB.');
-            this.value = '';
-        }
-    });
-    
-</script>
-    
+        document.getElementById('cv').addEventListener('change', function(e) {
+            var maxSize = 2 * 1024 * 1024; // 2MB
+            if (this.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar! Maximum size 2MB.');
+                this.value = '';
+            }
+        });
+    </script>
+
 </x-app-layout>

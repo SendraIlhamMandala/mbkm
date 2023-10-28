@@ -30,14 +30,22 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        
+
+        if (User::where('nimhs',$request->nimhs)->exists()) {
+            return redirect()->back()->with('error','NIM sudah terdaftar silahkan login');
+        }
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'nimhs' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'nimhs' => $request->nimhs,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

@@ -8,26 +8,30 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="nimhs" :value="__('NIM')" />
-            <x-text-input id="nimhs" class="block mt-1 w-full" type="text" name="nimhs" :value="old('nimhs')" required autofocus autocomplete="username" />
+            <x-text-input id="nimhs" class="block mt-1 w-full" type="text" name="nimhs" :value="old('nimhs')" required
+                autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('nimhs')" class="mt-2" />
         </div>
 
         <!-- Password -->
+
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
+            
+            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                autocomplete="current-password" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <div class="text-gray-400">
+                    jika sudah terdaftar password sama dengan nim
+                </div><x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                <input id="remember_me" type="checkbox"
+                    class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
+                    name="remember">
                 <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div>
@@ -38,6 +42,9 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif --}}
+            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+                {{ __('Daftar') }}
+            </a>
 
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
